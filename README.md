@@ -22,12 +22,12 @@ Backend API based on Spring Boot and related Spring frameworks for managing hote
 - Swagger Documentation
 
 ## Dependencies
-You can fine all dependencies in `pom.xml` file
+You can find all dependencies in `pom.xml` file
 
 ## How to use
 - Clone the repo.
 - Run using IntelliJ IDEA
-- Connect Datasource to your Postgres database by modifying application.properties file.
+- Connect datasource to your Postgres database by modifying application.properties file.
 - For now, you can run Swagger GUI in browser by accessing the following link:
 ```text
 http://localhost:8080/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config#/
@@ -38,7 +38,7 @@ http://localhost:8080/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-confi
 Please use the [issue tracker](https://github.com/MostafaAbdelkarim/Hotel-Reservation-System/issues) to report any bugs or file feature requests.
 
 ### Pending Features
-- Applying appropriate UI 
-- JWT Implementation
+- Implementing interactive UI 
+- Implementation JWT Tokens
 - Specific Rest Exception Handlers
 - More functionalities
