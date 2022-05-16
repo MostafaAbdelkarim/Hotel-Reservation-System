@@ -18,6 +18,7 @@ Backend API based on Spring Boot and related Spring frameworks for managing hote
 - Spring Security
 - PostgreSQL
 - Rest Exception Handling
+- Lombok
 - Swagger Documentation
 
 ## Dependencies
