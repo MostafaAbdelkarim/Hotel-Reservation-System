@@ -3,27 +3,22 @@ package com.mostafaeldahshan.hotel_reservation_system.model;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.OffsetDateTime;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EntityListeners;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.SequenceGenerator;
-import lombok.Getter;
-import lombok.Setter;
+import javax.persistence.*;
+
+import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.format.annotation.DateTimeFormat;
 
 
 @Entity
-@EntityListeners(AuditingEntityListener.class)
+@Table
 @Getter
 @Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Reservations {
 
     @Id
@@ -40,31 +35,49 @@ public class Reservations {
     )
     private Long id;
 
-    @Column
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Column(nullable = false)
     private LocalDate reservationDate;
 
+    @DateTimeFormat(pattern = "HH:mm")
     @Column
-    private LocalDate startTime;
+    private LocalTime startTime;
 
+    @DateTimeFormat(pattern = "HH:mm")
     @Column
     private LocalTime endTime;
 
-//    @Column
-//    private OffsetDateTime dateCreated;
-//
-//    @Column
-//    private OffsetDateTime lastUpdated;
-
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @CreatedDate
     @Column(nullable = false, updatable = false)
     private OffsetDateTime dateCreated;
 
-    @LastModifiedDate
     @Column(nullable = false)
     private OffsetDateTime lastUpdated;
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private RoomType roomType;
+
+    @PrePersist
+    public void prePersist() {
+        dateCreated = OffsetDateTime.now();
+        lastUpdated = dateCreated;
+    }
+
+    @PreUpdate
+    public void preUpdate() {
+        lastUpdated = OffsetDateTime.now();
+    }
+
+    public Reservations(LocalDate reservationDate, LocalTime startTime,
+                       LocalTime endTime, User user, RoomType roomType) {
+        this.reservationDate = reservationDate;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.user = user;
+        this.roomType = roomType;
+    }
 }

@@ -1,6 +1,7 @@
 package com.mostafaeldahshan.hotel_reservation_system.service;
 
 import com.mostafaeldahshan.hotel_reservation_system.model.Reservations;
+import com.mostafaeldahshan.hotel_reservation_system.repos.CapacityRepository;
 import com.mostafaeldahshan.hotel_reservation_system.repos.ReservationsRepository;
 import com.mostafaeldahshan.hotel_reservation_system.repos.UserRepository;
 import java.util.List;
@@ -14,11 +15,12 @@ import org.springframework.web.server.ResponseStatusException;
 public class ReservationsService {
 
     private final ReservationsRepository reservationRepository;
-    private final UserRepository userRepository;
+    private final CapacityRepository capacityRepository;
 
-    public ReservationsService(ReservationsRepository reservationRepository, UserRepository userRepository) {
+    public ReservationsService(final ReservationsRepository reservationRepository,
+                              final CapacityRepository capacityRepository) {
         this.reservationRepository = reservationRepository;
-        this.userRepository = userRepository;
+        this.capacityRepository = capacityRepository;
     }
 
     public List<Reservations> findAll() {
@@ -31,6 +33,17 @@ public class ReservationsService {
     }
 
     public Long create(final Reservations reservation) {
+        int capacity = capacityRepository.findByRoomType(reservation.getRoomType()).getCapacity();
+        int overlappingReservations = reservationRepository
+                .findReservationsByReservationDateAndStartTimeBeforeAndEndTimeAfterOrStartTimeBetween(
+                        reservation.getReservationDate(),
+                        reservation.getStartTime(), reservation.getEndTime(),
+                        reservation.getStartTime(), reservation.getEndTime()).size();
+
+        if (overlappingReservations >= capacity) {
+            throw new IllegalStateException("This room's capacity is full at desired time");
+        }
+
         return reservationRepository.save(reservation).getId();
     }
 

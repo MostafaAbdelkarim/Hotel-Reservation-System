@@ -16,10 +16,10 @@ Backend API based on Spring Boot and related Spring frameworks for managing hote
 - Spring Boot
 - Spring Data JPA
 - Spring Security
-- PostgreSQL
-- Rest Exception Handling
-- Lombok
+- PostgreSQL/H2-Database
+- ThymeLeaf
 - Swagger Documentation
+- Lombok
 
 ## Dependencies
 You can find all dependencies in `pom.xml` file
@@ -27,10 +27,10 @@ You can find all dependencies in `pom.xml` file
 ## How to use
 - Clone the repo.
 - Run using IntelliJ IDEA
-- Connect datasource to your Postgres database by modifying application.properties file.
-- For now, you can run Swagger GUI in browser by accessing the following link:
+- Connect datasource to your Postgres/H2 database by modifying application.properties file.
+- You can start experimenting using this link:
 ```text
-http://localhost:8080/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config#/
+http://localhost:8080/
 ```
 
 ### Bug Reports & Feature Requests
@@ -41,4 +41,4 @@ Please use the [issue tracker](https://github.com/MostafaAbdelkarim/Hotel-Reserv
 - Implementing interactive UI 
 - Implementation JWT Tokens
 - Specific Rest Exception Handlers
-- More functionalities
+- Mockito Testing.
