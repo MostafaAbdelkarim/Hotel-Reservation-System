@@ -64,4 +64,10 @@ public class PagesController {
         userService.update(user.getId(), user);
         return "redirect:/reservations";
     }
+
+    @GetMapping("/get/all-reservations")
+    public String getAllReservations()
+    {
+        return "reservationsList";
+    }
 }
