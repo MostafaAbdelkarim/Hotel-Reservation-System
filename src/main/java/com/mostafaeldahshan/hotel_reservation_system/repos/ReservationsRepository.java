@@ -1,6 +1,6 @@
 package com.mostafaeldahshan.hotel_reservation_system.repos;
 
-import com.mostafaeldahshan.hotel_reservation_system.domain.Reservations;
+import com.mostafaeldahshan.hotel_reservation_system.model.Reservations;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 
