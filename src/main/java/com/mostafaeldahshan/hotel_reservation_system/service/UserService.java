@@ -1,12 +1,15 @@
 package com.mostafaeldahshan.hotel_reservation_system.service;
 
+import com.mostafaeldahshan.hotel_reservation_system.model.Reservations;
 import com.mostafaeldahshan.hotel_reservation_system.model.User;
 import com.mostafaeldahshan.hotel_reservation_system.repos.UserRepository;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -45,4 +48,5 @@ public class UserService {
     public void delete(final Long id) {
         userRepository.deleteById(id);
     }
+
 }

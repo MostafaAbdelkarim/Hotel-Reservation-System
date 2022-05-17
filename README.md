@@ -10,7 +10,6 @@
 
 Backend API based on Spring Boot and related Spring frameworks for managing hotel reservations.
 
-<br>
 
 ## Tech Stack
 - Spring Boot

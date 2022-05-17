@@ -6,6 +6,7 @@ import com.mostafaeldahshan.hotel_reservation_system.repos.ReservationsRepositor
 import com.mostafaeldahshan.hotel_reservation_system.repos.UserRepository;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -17,6 +18,7 @@ public class ReservationsService {
     private final ReservationsRepository reservationRepository;
     private final CapacityRepository capacityRepository;
 
+    @Autowired
     public ReservationsService(final ReservationsRepository reservationRepository,
                               final CapacityRepository capacityRepository) {
         this.reservationRepository = reservationRepository;
