@@ -45,10 +45,8 @@ public class PagesController {
             // Empty reservation object in case the user creates a new reservation
             Reservations reservation = new Reservations();
             model.addAttribute("reservation", reservation);
-
             return "reservations";
         }
-
         return "index";
     }
 

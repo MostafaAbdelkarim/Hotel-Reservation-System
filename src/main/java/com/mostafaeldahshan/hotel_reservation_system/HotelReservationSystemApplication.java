@@ -1,29 +1,23 @@
 package com.mostafaeldahshan.hotel_reservation_system;
 
 import com.mostafaeldahshan.hotel_reservation_system.model.Capacity;
-import com.mostafaeldahshan.hotel_reservation_system.model.Reservations;
 import com.mostafaeldahshan.hotel_reservation_system.model.RoomType;
 import com.mostafaeldahshan.hotel_reservation_system.model.User;
 import com.mostafaeldahshan.hotel_reservation_system.repos.CapacityRepository;
-import com.mostafaeldahshan.hotel_reservation_system.repos.ReservationsRepository;
 import com.mostafaeldahshan.hotel_reservation_system.repos.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.ZoneId;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 
 @SpringBootApplication
+@EnableSwagger2
 public class HotelReservationSystemApplication {
 
     private Map<RoomType, Integer> initialCapacities =
@@ -58,4 +52,5 @@ public class HotelReservationSystemApplication {
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
 }
